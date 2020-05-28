@@ -109,7 +109,7 @@ export default ({config, Lang, paths}) ->
     _map config.LANGUAGES, (language) ->
       fs.writeFileSync(
         "#{__dirname}/#{paths.dist}/lang_#{language}.json"
-        Language.getJsonString language
+        Lang.getJsonString language
       )
 
     scriptsConfig = _defaultsDeep {
