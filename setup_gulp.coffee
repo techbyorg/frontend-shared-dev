@@ -1,35 +1,33 @@
-fs = require 'fs'
-del = require 'del'
-_defaults = require 'lodash/defaults'
-_defaultsDeep = require 'lodash/defaultsDeep'
-_map = require 'lodash/map'
-_mapValues = require 'lodash/mapValues'
-gulp = require 'gulp'
-gutil = require 'gulp-util'
-webpack = require 'webpack'
-autoprefixer = require 'autoprefixer'
-manifest = require 'gulp-manifest'
-spawn = require('child_process').spawn
-coffeelint = require 'gulp-coffeelint'
-webpackStream = require 'webpack-stream'
-gulpSequence = require 'gulp-sequence'
-WebpackDevServer = require 'webpack-dev-server'
-HandleCSSLoader = require 'webpack-handle-css-loader'
-TerserPlugin = require 'terser-webpack-plugin'
-MiniCssExtractPlugin = require 'mini-css-extract-plugin'
-# Visualizer = require('webpack-visualizer-plugin')
-BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
-gcPub = require 'gulp-gcloud-publish'
-gzip = require 'gulp-gzip'
-sizereport = require 'gulp-sizereport'
-argv = require('yargs').argv
-SpeedMeasurePlugin = require 'speed-measure-webpack-plugin'
-HardSourceWebpackPlugin = require 'hard-source-webpack-plugin'
+import fs from 'fs'
+import del from 'del'
+import _defaults from 'lodash/defaults'
+import _defaultsDeep from 'lodash/defaultsDeep'
+import _map from 'lodash/map'
+import _mapValues from 'lodash/mapValues'
+import gulp from 'gulp'
+import gutil from 'gulp-util'
+import webpack from 'webpack'
+import autoprefixer from 'autoprefixer'
+import manifest from 'gulp-manifest'
+import {spawn} from 'child_process'
+import coffeelint from 'gulp-coffeelint'
+import webpackStream from 'webpack-stream'
+import gulpSequence from 'gulp-sequence'
+import WebpackDevServer from 'webpack-dev-server'
+import HandleCSSLoader from 'webpack-handle-css-loader'
+import TerserPlugin from 'terser-webpack-plugin'
+import MiniCssExtractPlugin from 'mini-css-extract-plugin'
+import {BundleAnalyzerPlugin} from 'webpack-bundle-analyzer'
+import gcPub from 'gulp-gcloud-publish'
+import gzip from 'gulp-gzip'
+import sizereport from 'gulp-sizereport'
+import {argv} from 'yargs'
+import SpeedMeasurePlugin from 'speed-measure-webpack-plugin'
+import HardSourceWebpackPlugin from 'hard-source-webpack-plugin'
 
 smp = new SpeedMeasurePlugin();
 
-# keep as commonjs for now
-module.exports = ({config, Lang, paths}) ->
+export default ({config, Lang, paths}) ->
   webpackBase =
     mode: 'development'
     module:
