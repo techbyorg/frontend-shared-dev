@@ -119,7 +119,6 @@ export default ({config, Lang, paths}) ->
     scriptsConfig = _defaultsDeep {
       mode: 'production'
       optimization: {
-        # minimize: false
         usedExports: true # tree shake lodash
         minimizer: [
           new TerserPlugin {
@@ -133,7 +132,6 @@ export default ({config, Lang, paths}) ->
         ]
       }
       plugins: [
-        # new Visualizer()
         new BundleAnalyzerPlugin()
         new webpack.IgnorePlugin {
           resourceRegExp: /\.json$/
@@ -165,8 +163,11 @@ export default ({config, Lang, paths}) ->
             options:
               transpile:
                 configFile: false # don't use local ssr settings
-                presets: [['@babel/preset-env', {modules: false, targets: "> 1%, not dead"}]]
-                plugins: ['@babel/plugin-syntax-dynamic-import']
+                presets: [['@babel/preset-env', {modules: false, targets: "> 0.25%, not dead"}]]
+                plugins: [
+                  '@babel/plugin-syntax-dynamic-import'
+                  '@babel/plugin-transform-runtime'
+                ]
           }
           handleLoader.css()
           handleLoader.styl()
