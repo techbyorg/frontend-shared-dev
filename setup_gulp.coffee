@@ -88,10 +88,10 @@ export default ({config, Lang, paths}) ->
     .pipe gulp.dest paths.dist
 
   gulp.task 'dist:sw:replace', (done) ->
-    stats = JSON.parse fs.readFileSync "#{__dirname}/#{paths.dist}/stats.json"
-    sw = fs.readFileSync "#{__dirname}/#{paths.dist}/service_worker.js", 'utf-8'
+    stats = JSON.parse fs.readFileSync "#{paths.dist}/stats.json"
+    sw = fs.readFileSync "#{paths.dist}/service_worker.js", 'utf-8'
     sw = sw.replace /\|HASH\|/g, stats.hash
-    fs.writeFileSync("#{__dirname}/#{paths.dist}/service_worker.js", sw, 'utf-8')
+    fs.writeFileSync("#{paths.dist}/service_worker.js", sw, 'utf-8')
     done()
 
   gulp.task 'dist:scripts', gulp.series('dist:clean', ->
@@ -108,7 +108,7 @@ export default ({config, Lang, paths}) ->
     }
     _map config.LANGUAGES, (language) ->
       fs.writeFileSync(
-        "#{__dirname}/#{paths.dist}/lang_#{language}.json"
+        "#{paths.dist}/lang_#{language}.json"
         Lang.getJsonString language
       )
 
@@ -177,19 +177,19 @@ export default ({config, Lang, paths}) ->
         gutil.log err
         return
       statsJson = JSON.stringify {hash: stats.toJson().hash, time: Date.now()}
-      fs.writeFileSync "#{__dirname}/#{paths.dist}/stats.json", statsJson
+      fs.writeFileSync "#{paths.dist}/stats.json", statsJson
     .pipe gulp.dest paths.dist
   )
 
   gulp.task 'dist:concat', (done) ->
-    stats = JSON.parse fs.readFileSync "#{__dirname}/#{paths.dist}/stats.json"
+    stats = JSON.parse fs.readFileSync "#{paths.dist}/stats.json"
 
     fs.renameSync(
-      "#{__dirname}/#{paths.dist}/bundle.css"
-      "#{__dirname}/#{paths.dist}/bundle_#{stats.hash}.css"
+      "#{paths.dist}/bundle.css"
+      "#{paths.dist}/bundle_#{stats.hash}.css"
     )
 
-    bundle = fs.readFileSync "#{__dirname}/#{paths.dist}/bundle.js", 'utf-8'
+    bundle = fs.readFileSync "#{paths.dist}/bundle.js", 'utf-8'
     bundle = bundle.replace /\|HASH\|/g, stats.hash
     matches = bundle.match(/process\.env\.[a-zA-Z0-9_]+/g)
     _map matches, (match) ->
@@ -197,16 +197,16 @@ export default ({config, Lang, paths}) ->
       bundle = bundle.replace match, "'#{process.env[key]}'"
     _map config.LANGUAGES, (language) ->
       lang = fs.readFileSync(
-        "#{__dirname}/#{paths.dist}/lang_#{language}.json", 'utf-8'
+        "#{paths.dist}/lang_#{language}.json", 'utf-8'
       )
       fs.writeFileSync(
-        "#{__dirname}/#{paths.dist}/bundle_#{stats.hash}_#{language}.js"
+        "#{paths.dist}/bundle_#{stats.hash}_#{language}.js"
         lang + bundle
       , 'utf-8')
     done()
 
   gulp.task 'dist:gc', ->
-    gulp.src("#{__dirname}/#{paths.dist}/*bundle*")
+    gulp.src("#{paths.dist}/*bundle*")
     .pipe gzip()
     .pipe gcPub {
       bucket: 'fdn.uno'
@@ -232,7 +232,7 @@ export default ({config, Lang, paths}) ->
   )
 
   gulp.task 'dist:sizereport', ->
-    gulp.src "#{__dirname}/#{paths.dist}/bundle*"
+    gulp.src "#{paths.dist}/bundle*"
     .pipe sizereport()
 
   gulp.task 'dist:sw', gulp.series(
