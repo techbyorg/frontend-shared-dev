@@ -30,6 +30,9 @@ smp = new SpeedMeasurePlugin();
 export default ({config, Lang, paths}) ->
   webpackBase =
     mode: 'development'
+    node:
+      Buffer: false
+      setImmediate: false
     module:
       exprContextRegExp: /$^/
       exprContextCritical: false
@@ -115,12 +118,6 @@ export default ({config, Lang, paths}) ->
 
     scriptsConfig = _defaultsDeep {
       mode: 'production'
-      # not sure which module is doing it, but the node buffer module is being
-      # pulled in. can disable with this
-      # https://github.com/webpack/webpack/issues/4240
-      node:
-        Buffer: false
-        # process: false
       optimization: {
         # minimize: false
         usedExports: true # tree shake lodash
