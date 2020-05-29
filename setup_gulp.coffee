@@ -135,7 +135,10 @@ export default ({config, Lang, paths}) ->
       plugins: [
         # new Visualizer()
         new BundleAnalyzerPlugin()
-        new webpack.IgnorePlugin /\.json$/, /lang/
+        new webpack.IgnorePlugin {
+          resourceRegExp: /\.json$/
+          contextRegExp: /lang/
+        }
         new MiniCssExtractPlugin {
           filename: 'bundle.css'
         }
