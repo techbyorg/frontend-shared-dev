@@ -75,6 +75,7 @@ export default ({config, Lang, paths}) ->
             loader: 'coffee-loader'
             options:
               transpile:
+                configFile: false # don't use local ssr settings
                 presets: ['@babel/env']
                 plugins: ['@babel/plugin-syntax-dynamic-import']
           }
@@ -163,6 +164,7 @@ export default ({config, Lang, paths}) ->
             loader: 'coffee-loader'
             options:
               transpile:
+                configFile: false # don't use local ssr settings
                 presets: [['@babel/preset-env', {modules: false, targets: "> 1%, not dead"}]]
                 plugins: ['@babel/plugin-syntax-dynamic-import']
           }
