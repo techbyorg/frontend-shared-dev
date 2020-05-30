@@ -132,7 +132,7 @@ export default ({config, Lang, paths}) ->
         ]
       }
       plugins: [
-        new BundleAnalyzerPlugin()
+        # new BundleAnalyzerPlugin()
         new webpack.IgnorePlugin {
           resourceRegExp: /\.json$/
           contextRegExp: /lang/
@@ -247,8 +247,8 @@ export default ({config, Lang, paths}) ->
     'dist:clean'
     gulp.parallel('dist:scripts', 'dist:static')
     'dist:concat'
-    # 'dist:sw'
-    # 'dist:gc'
+    'dist:sw'
+    'dist:gc'
     'dist:sizereport'
   )
 
