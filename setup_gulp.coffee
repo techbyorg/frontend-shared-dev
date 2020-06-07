@@ -1,3 +1,5 @@
+# TODO: we could probably replace all gulp with only webpack
+
 import fs from 'fs'
 import del from 'del'
 import _defaults from 'lodash/defaults'
