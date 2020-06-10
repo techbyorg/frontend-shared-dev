@@ -1,7 +1,3 @@
-// TODO: This file was created by bulk-decaffeinate.
-// Sanity-check the conversion and remove this comment.
-// TODO: we could probably replace all gulp with only webpack
-
 import fs from 'fs'
 import del from 'del'
 import _defaultsDeep from 'lodash/defaultsDeep'
@@ -271,13 +267,11 @@ export default (function ({ config, Lang, paths }) {
   )
 
   gulp.task('dev:server', gulp.series('build:static:dev', (function () {
-    let devServer = null
-    process.on('exit', () => devServer != null ? devServer.kill() : undefined)
+    let devServer
+    process.on('exit', () => devServer?.kill())
     return function () {
-      if (devServer != null) {
-        devServer.kill()
-      }
-      devServer = spawn('babel-node', ['bin/dev_server.js'], { stdio: 'inherit' })
+      devServer?.kill()
+      devServer = spawn('babel-node', ['--config', paths.babelConfig, 'bin/dev_server.js'], { stdio: 'inherit' })
       return devServer.on('close', function (code) {
         if (code === 8) {
           return gulp.log('Error detected, waiting for changes')
