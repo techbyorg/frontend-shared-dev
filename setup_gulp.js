@@ -132,7 +132,7 @@ export default (function ({ config, Lang, paths }) {
         ]
       },
       plugins: [
-        // new BundleAnalyzerPlugin()
+        // new BundleAnalyzerPlugin(),
         new webpack.IgnorePlugin({
           resourceRegExp: /\.json$/,
           contextRegExp: /lang/
@@ -271,7 +271,7 @@ export default (function ({ config, Lang, paths }) {
     process.on('exit', () => devServer?.kill())
     return function () {
       devServer?.kill()
-      devServer = spawn('babel-node', ['--config', paths.babelConfig, 'bin/dev_server.js'], { stdio: 'inherit' })
+      devServer = spawn('node', ['-r', paths.babelConfig, 'bin/dev_server.js'], { stdio: 'inherit' })
       return devServer.on('close', function (code) {
         if (code === 8) {
           return gulp.log('Error detected, waiting for changes')
