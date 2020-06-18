@@ -162,9 +162,7 @@ var _default = function _default(_ref) {
           }
         })]
       },
-      plugins: [
-        // new _webpackBundleAnalyzer.BundleAnalyzerPlugin(), 
-        new _webpack["default"].IgnorePlugin({
+      plugins: [new _webpack["default"].IgnorePlugin({
         resourceRegExp: /\.json$/,
         contextRegExp: /lang/
       }), new _miniCssExtractPlugin["default"]({
@@ -200,7 +198,11 @@ var _default = function _default(_ref) {
               modules: false,
               targets: '> 0.25%, not dead'
             }]],
-            plugins: ['@babel/plugin-syntax-dynamic-import', '@babel/plugin-transform-runtime']
+            sourceType: 'unambiguous',
+            plugins: [
+              '@babel/plugin-syntax-dynamic-import',
+              '@babel/plugin-transform-runtime'
+            ]
           }
         }, handleLoader.css(), handleLoader.styl()]
       }

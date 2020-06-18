@@ -169,6 +169,7 @@ export default (function ({ config, Lang, paths }) {
             options: {
               configFile: false, // don't use local ssr settings
               presets: [['@babel/preset-env', { modules: false, targets: '> 0.25%, not dead' }]],
+              sourceType: 'unambiguous',
               plugins: [
                 '@babel/plugin-syntax-dynamic-import',
                 '@babel/plugin-transform-runtime'
