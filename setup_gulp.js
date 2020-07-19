@@ -172,7 +172,8 @@ export default (function ({ config, Lang, paths }) {
               sourceType: 'unambiguous',
               plugins: [
                 '@babel/plugin-syntax-dynamic-import',
-                '@babel/plugin-transform-runtime'
+                '@babel/plugin-transform-runtime',
+                '@babel/plugin-proposal-class-properties'
               ]
             }
           },
