@@ -10,6 +10,7 @@
     "autoprefixer": "^9.7.6",
     "b-assert": "^0.1.4",
     "babel-loader": "^8.1.0",
+    "babel-plugin-transform-inline-environment-variables": "^0.4.3",
     "cors": "^2.8.5",
     "css-loader": "^1.0.1",
     "del": "^3.0.0",

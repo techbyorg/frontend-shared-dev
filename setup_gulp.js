@@ -75,7 +75,11 @@ export default (function ({ config, Lang, paths }) {
             options: {
               configFile: false, // don't use local ssr settings
               presets: ['@babel/env'],
-              plugins: ['@babel/plugin-syntax-dynamic-import']
+              plugins: [
+                '@babel/plugin-syntax-dynamic-import',
+                '@babel/plugin-proposal-class-properties',
+                'babel-plugin-transform-inline-environment-variables'
+              ]
             }
           }
         ]
@@ -318,7 +322,7 @@ export default (function ({ config, Lang, paths }) {
             loader: 'babel-loader',
             options: {
               presets: ['@babel/env'],
-              plugins: ['@babel/plugin-syntax-dynamic-import']
+              plugins: ['@babel/plugin-syntax-dynamic-import', '@babel/plugin-proposal-class-properties', 'babel-plugin-transform-inline-environment-variables']
             }
           },
           handleLoader.css(),

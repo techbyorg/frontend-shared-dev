@@ -39,14 +39,13 @@ var _terserWebpackPlugin = _interopRequireDefault(require("terser-webpack-plugin
 
 var _miniCssExtractPlugin = _interopRequireDefault(require("mini-css-extract-plugin"));
 
-// var _webpackBundleAnalyzer = require("webpack-bundle-analyzer");
-
 var _gulpGcloudPublish = _interopRequireDefault(require("gulp-gcloud-publish"));
 
 var _gulpGzip = _interopRequireDefault(require("gulp-gzip"));
 
 var _gulpSizereport = _interopRequireDefault(require("gulp-sizereport"));
 
+// import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 var _default = function _default(_ref) {
   var config = _ref.config,
       Lang = _ref.Lang,
@@ -107,7 +106,7 @@ var _default = function _default(_ref) {
             configFile: false,
             // don't use local ssr settings
             presets: ['@babel/env'],
-            plugins: ['@babel/plugin-syntax-dynamic-import']
+            plugins: ['@babel/plugin-syntax-dynamic-import', '@babel/plugin-proposal-class-properties', 'babel-plugin-transform-inline-environment-variables']
           }
         }]
       },
@@ -149,8 +148,8 @@ var _default = function _default(_ref) {
     var scriptsConfig = (0, _defaultsDeep2["default"])({
       mode: 'production',
       optimization: {
-        // tree shake lodash
         usedExports: true,
+        // tree shake lodash
         minimizer: [new _terserWebpackPlugin["default"]({
           parallel: true,
           terserOptions: {
@@ -162,7 +161,8 @@ var _default = function _default(_ref) {
           }
         })]
       },
-      plugins: [new _webpack["default"].IgnorePlugin({
+      plugins: [// new BundleAnalyzerPlugin(),
+      new _webpack["default"].IgnorePlugin({
         resourceRegExp: /\.json$/,
         contextRegExp: /lang/
       }), new _miniCssExtractPlugin["default"]({
@@ -199,11 +199,7 @@ var _default = function _default(_ref) {
               targets: '> 0.25%, not dead'
             }]],
             sourceType: 'unambiguous',
-            plugins: [
-              '@babel/plugin-syntax-dynamic-import',
-              '@babel/plugin-transform-runtime',
-              '@babel/plugin-proposal-class-properties'
-            ]
+            plugins: ['@babel/plugin-syntax-dynamic-import', '@babel/plugin-transform-runtime', '@babel/plugin-proposal-class-properties']
           }
         }, handleLoader.css(), handleLoader.styl()]
       }
@@ -326,7 +322,7 @@ var _default = function _default(_ref) {
           loader: 'babel-loader',
           options: {
             presets: ['@babel/env'],
-            plugins: ['@babel/plugin-syntax-dynamic-import']
+            plugins: ['@babel/plugin-syntax-dynamic-import', '@babel/plugin-proposal-class-properties', 'babel-plugin-transform-inline-environment-variables']
           }
         }, handleLoader.css(), handleLoader.styl()]
       },
@@ -379,3 +375,4 @@ var _default = function _default(_ref) {
 };
 
 exports["default"] = _default;
+
