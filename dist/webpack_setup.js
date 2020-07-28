@@ -91,7 +91,7 @@ function _default(_ref) {
     },
     output: {
       filename: '[name].js',
-      publicPath: config.SCRIPTS_CDN_URL
+      publicPath: "".concat(config.SCRIPTS_CDN_URL, "/")
     }
   };
   var isDevServer = process.env.WEBPACK_DEV_SERVER;
@@ -196,7 +196,7 @@ function _default(_ref) {
       dir: paths.dist,
       files: ['service_worker.js'],
       rules: [{
-        search: /g\|HASH\|/g,
+        search: /\|HASH\|/g,
         replace: '[hash]'
       }]
     }]), // generate bundles for each language
@@ -240,7 +240,7 @@ function _default(_ref) {
     output: {
       filename: '[name].js',
       chunkFilename: '[name]_bundle_[hash].js',
-      publicPath: config.SCRIPTS_CDN_URL
+      publicPath: "".concat(config.SCRIPTS_CDN_URL, "/")
     },
     stats: {
       children: false

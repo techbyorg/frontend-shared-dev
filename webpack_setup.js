@@ -72,7 +72,7 @@ export default function ({ Lang, paths, config }) {
     },
     output: {
       filename: '[name].js',
-      publicPath: config.SCRIPTS_CDN_URL
+      publicPath: `${config.SCRIPTS_CDN_URL}/`
     }
   }
 
@@ -175,7 +175,7 @@ export default function ({ Lang, paths, config }) {
         dir: paths.dist,
         files: ['service_worker.js'],
         rules: [{
-          search: /g\|HASH\|/g,
+          search: /\|HASH\|/g,
           replace: '[hash]'
         }]
       }]),
@@ -220,7 +220,7 @@ export default function ({ Lang, paths, config }) {
     output: {
       filename: '[name].js',
       chunkFilename: '[name]_bundle_[hash].js',
-      publicPath: config.SCRIPTS_CDN_URL
+      publicPath: `${config.SCRIPTS_CDN_URL}/`
     },
     stats: { children: false }
   }, baseWebpackConfig)
