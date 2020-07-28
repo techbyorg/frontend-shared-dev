@@ -207,7 +207,7 @@ function _default(_ref) {
         secretAccessKey: process.env.DO_SPACES_SECRET
       },
       s3UploadOptions: {
-        Bucket: 'tdn.one',
+        Bucket: 'tdn-one',
         // Here we set the Content-Encoding header for all the gzipped files to 'gzip'
         ContentEncoding: function ContentEncoding(fileName) {
           if (/\.gz/.test(fileName)) {
