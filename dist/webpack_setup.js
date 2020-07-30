@@ -225,7 +225,7 @@ function _default(_ref) {
           }
         }
       },
-      basePath: 'd/scripts',
+      basePath: 'scripts',
       // This is the name the uploaded directory will be given
       directory: 'dist' // This is the directory you want to upload
 

@@ -205,7 +205,7 @@ export default function ({ Lang, paths, config }) {
             }
           }
         },
-        basePath: 'd/scripts', // This is the name the uploaded directory will be given
+        basePath: 'scripts',
         directory: 'dist' // This is the directory you want to upload
       }),
       function () {
