@@ -108,7 +108,7 @@ function _default(_ref) {
       },
       // seems to improve perf
       devServer: {
-        host: config.HOST,
+        host: config.HOSTNAME,
         port: config.WEBPACK_DEV_PORT,
         publicPath: "".concat(config.WEBPACK_DEV_URL, "/"),
         hot: true,

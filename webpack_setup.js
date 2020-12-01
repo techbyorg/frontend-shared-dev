@@ -21,6 +21,7 @@ import _ from 'lodash'
 export default function ({ Lang, paths, config }) {
   // This is the main configuration object.
   // Here you write different options and tell Webpack what to do
+  // TODO: replace with just css-loader. handleCssLoader is old and doesn't have recent versions of css-loader
   const handleLoader = new HandleCSSLoader({
     minimize: config.ENV === config.ENVS.PROD,
     extract: !process.env.WEBPACK_DEV_SERVER,
@@ -92,7 +93,7 @@ export default function ({ Lang, paths, config }) {
         pathinfo: false
       }, // seems to improve perf
       devServer: {
-        host: config.HOST,
+        host: config.HOSTNAME,
         port: config.WEBPACK_DEV_PORT,
         publicPath: `${config.WEBPACK_DEV_URL}/`,
         hot: true,
